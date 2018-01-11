@@ -1,0 +1,8 @@
+{
+  "name": "classList",
+  "repo": "egalink/classList",
+  "description": "A ClassList Helper",
+  "version": "1.0.0",
+  "scripts": ["classList.js"],
+  "main": "classList.js"
+}

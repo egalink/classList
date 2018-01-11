@@ -1,0 +1,28 @@
+{
+  "name": "classList",
+  "main": "classList.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/egalink/classList",
+  "authors": [
+    "Edgar Jakim",
+    "Jean David Daviet"
+  ],
+  "description": "A ClassList Helper",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "class"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "component.json"
+  ]
+}

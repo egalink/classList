@@ -1,0 +1,22 @@
+{
+  "name": "egalink-classList",
+  "version": "1.0.0",
+  "description": "A ClassList Helper",
+  "main": "classList.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/egalink/classList.git"
+  },
+  "keywords": [
+    "class"
+  ],
+  "author": "Jakim Hernández",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/egalink/classList/issues"
+  },
+  "homepage": "https://github.com/egalink/classList"
+}
