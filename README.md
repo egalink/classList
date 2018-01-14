@@ -10,9 +10,9 @@ A ClassList Helper is longer supported. v1.0.0 is the final version.
 
 ``` js
 classList.has(element, 'my-class') // returns true/false
-classList.add(element, 'my-new-class') // add new class
-classList.remove(element, 'my-unwanted-class') // remove class
-classList.toggle(element, 'my-class') // toggle class
+classList.add(element, 'my-class1', 'my-class2', '...'); // add new class and returns element
+classList.remove(element, 'my-class1', 'my-class2', '...'); // remove class and returns element
+classList.toggle(element, 'my-class'); // toggle class and returns true/false
 ```
 
 ## Package management
