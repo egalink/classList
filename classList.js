@@ -5,10 +5,10 @@
  * https://github.com/egalink
  * MIT license
  * 
- * classList.add(elem, 'my-class1', 'my-class2', '...');
- * classList.remove(elem, 'my-class1', 'my-class2', '...');
- * classList.toggle(elem, 'my-class');
- * classList.contains(elem, 'my-class');
+ * classList.has(element, 'my-class') // returns true/false
+ * classList.add(element, 'my-class1', 'my-class2', '...'); // add new class and returns element
+ * classList.remove(element, 'my-class1', 'my-class2', '...'); // remove class and returns element
+ * classList.toggle(element, 'my-class'); // toggle class and returns true/false
  */
 
 /*jshint browser: true, strict: true, undef: true, unused: true */
