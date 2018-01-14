@@ -5,8 +5,8 @@
  * https://github.com/egalink
  * MIT license
  * 
- * classList.add(elem, 'my-new-class');
- * classList.remove(elem, 'my-unwanted-class');
+ * classList.add(elem, 'my-class1', 'my-class2', '...');
+ * classList.remove(elem, 'my-class1', 'my-class2', '...');
  * classList.toggle(elem, 'my-class');
  * classList.contains(elem, 'my-class');
  */
