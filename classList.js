@@ -17,17 +17,32 @@
 ;(function(window) {
 
     'use strict';
-
+    
+    /**
+     * Regexp to find a className on a string.
+     *
+     * @return RegExp Obj
+     */
     function classReg (className) {
         return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
     }
-
+    
     /**
      * ClassList Fallback
      * Thanks to: Jean David Daviet
      * Gist: https://gist.github.com/JeanDavidDaviet/4745497
      * --------------------------------------------------------------------- */
 
+    /**
+     * Returns a Boolean value, indicating whether an element has
+     * the specified class name.
+     * 
+     * Usage:
+     *
+     * var exists = containsClass(element, 'className');
+     * 
+     * @return bool
+     */
     var containsClass = function (el, className) {
         //
         if (document.documentElement.classList) {
@@ -43,43 +58,93 @@
         return containsClass(el, className);
     };
 
-    var addClass = function (el, className) {
+    /**
+     * Adds one or more class names to an element.
+     * If the specified class already exist, the class will not be added.
+     *
+     * Usage:
+     *
+     * addClass(el, 'class1', 'class2', 'class3', ...);
+     *
+     * @return bool false|HTML Element
+     */
+    var addClass = function (el) {
         //
+        var classNames = arguments;
+        if (classNames.length <= 1 || typeof el != 'object')
+            return false;
+
         if (document.documentElement.classList)
-            addClass = function (el, className) { el.classList.add(className); }
+            addClass = function (el, classNames) {
+                for (var i = 1; i < classNames.length; i ++) if (typeof classNames[i] == 'string') {
+                    el.classList.add(classNames[i]);
+                }
+                return el;
+            }
         else
-            addClass = function (el, className) {
-                if (! el)
-                    return false;
-                if (! containsClass(el, className))
-                    el.className += (el.className ? " " : "") + className;
+            addClass = function (el, classNames) {
+                for (var i = 1; i < classNames.length; i ++) if (! containsClass(el, classNames[i]) && typeof classNames[i] == 'string') {
+                    el.className += (el.className ? " " : "") + classNames[i];
+                }
+                return el;
             }
 
-        addClass(el, className);
+        return addClass(el, classNames);
     };
 
-    var removeClass = function (el, className) {
+    /**
+     * Removes one or more class names from an element.
+     * Note: Removing a class that does not exist, does NOT throw an error.
+     *
+     * Usage:
+     *
+     * removeClass(el, 'class1', 'class2', 'class3', ...);
+     *
+     * @return bool false|HTML Element
+     */
+    var removeClass = function (el) {
         //
+        var classNames = arguments;
+        if (classNames.length <= 1 || typeof el != 'object')
+            return false;
+
         if (document.documentElement.classList)
-            removeClass = function (el, className) { el.classList.remove(className); }
+            removeClass = function (el, classNames) {
+                for (var i = 1; i < classNames.length; i ++) if (typeof classNames[i] == 'string') {
+                    el.classList.remove(classNames[i]);
+                }
+                return el;
+            }
         else
-            removeClass = function (el, className) {
-                if (! el || ! el.className)
-                    return false;
-                el.className = el.className.replace(classReg(className), "$2");
+            removeClass = function (el, classNames) {
+                for (var i = 1; i < classNames.length; i ++) if (containsClass(el, classNames[i]) && typeof classNames[i] == 'string') {
+                    el.className = el.className.replace(classReg(classNames[i]), "$2");
+                }
+                return el;
             }
 
-        removeClass(el, className);
+        return removeClass(el, classNames);
     };
 
+    /**
+     * Toggles between a class name for an element.
+     * 
+     * Usage:
+     *
+     * var result = toggleClass(el, 'className');
+     *
+     * @return bool
+     */
     var toggleClass = function (el, className) {
         //
         if (document.documentElement.classList)
             toggleClass = function (el, className) { return el.classList.toggle(className); }
         else
             toggleClass = function (el, className) {
-                var fn = containsClass(elem, className) ? removeClass : addClass;
-                    fn(elem, className);
+                var exists = containsClass(el, className);
+                var caller = exists === true ? removeClass : addClass;
+                    caller(el, className);
+                return ! exists;
             }
 
         return toggleClass(el, className);
